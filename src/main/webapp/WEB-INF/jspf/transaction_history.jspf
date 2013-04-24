@@ -10,7 +10,7 @@
     $(function() {//modal vindu med transaksjonshistorie
         $("#idTrHistDialog").dialog({
             autoOpen: false,
-            height: 600,
+            height: 480,
             width: 800,
             modal: true,
             buttons: {
@@ -23,12 +23,49 @@
             }
         });
     });
+
+    /**
+     * <p>filler opp abell med transaksjonshistorie til gitt konto
+     * @param {type} accId
+     * @returns {undefined} 
+     * */
+    function fillTransactionHistory(accId) {
+
+        $("#idTrHistTable tbody").empty(); //fjerner eventuelt gammelt innhold
+        //sender json for å få transaksjoner
+        $.getJSON("Transaction", "action=get-by-acc&accnmbr=" + accId, function(data) {
+            $.each(data, function(key, value) {
+                //fyller tabell opp med nye verdier
+                $("#idTrHistTable tbody").append('<tr style="cursor: pointer;">' +
+                        '<td>' +
+                        value.id +
+                        '</td><td>' +
+                        value.registreringsTidspunkt +
+                        '</td><td>' +
+                        value.fraKonto +
+                        '</td><td>' +
+                        value.tilKonto +
+                        '</td><td>' +
+                        value.transkasjonsbeskrivelse +
+                        '</td><td>' +
+                        value.transType +
+                        '</td><td>' +
+                        value.initsiator +
+                        '</td><td>' +
+                        value.belop +
+                        '</td><td>');
+            });
+        });
+        $("#idTrHistDialog").dialog("open");
+    }
+
+
 </script>
 
 <div id="idTrHistDialog" title="Transaksjonshistorie">
-    <div class="container">
+    <div class="container span6">
         <table class="table table-striped table-bordered" id="idTrHistTable">
-            <tbody>
+            <thead>
             <th>ID</th>
             <th>Tidspunkt</th>
             <th>Fra konto</th>
@@ -36,7 +73,10 @@
             <th>Beskrivelse</th>
             <th>Type</th>
             <th>Initsiator</th>
-            <th>Belop</th>
+            <th>Belop</th>             
+            </thead>
+            <tbody>
+
             </tbody>
         </table>    
     </div>

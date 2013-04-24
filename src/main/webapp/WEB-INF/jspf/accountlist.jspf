@@ -29,26 +29,24 @@
                         '</td>' +
                         '<td>' +
                         value.kontotype +
-                        '</td>'+
-                        '<td>'+
-                        value.kontonr+
-                        '</td>'+
-                        '<td>'+
-                        value.saldo+
-                        '</td>'+
-                        '<td>'+
-                        value.sisteEndringsTidspunkt+
-                        '</td>'+
+                        '</td>' +
+                        '<td>' +
+                        value.kontonr +
+                        '</td>' +
+                        '<td>' +
+                        value.saldo +
+                        '</td>' +
+                        '<td>' +
+                        value.sisteEndringsTidspunkt +
+                        '</td>' +
                         '</tr>');
-                $("#idAccTable tbody tr:last").click(function(){
-                    $("#idTrHistTable").empty(); //fjerner eventuelt gammelt innhold
-                    //sender json for å få transaksjoner
-                    //fyller tabell opp med nye verdier
-                    $("#idTrHistDialog").dialog("open");
+                $("#idAccTable tbody tr:last").click(function() {
+                    fillTransactionHistory(value.kontonr);//se transaction_history.jspf
                 });
             });
         });
     }
+
 
 </script>
 <div class="container">

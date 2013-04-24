@@ -7,29 +7,27 @@ package no.hin.stg.intapp.oblig4web.servlet;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import no.hin.stg.intapp.oblig4web.beans.KontoFacadeLocal;
-import no.hin.stg.intapp.oblig4web.entities.Konto;
+import no.hin.stg.intapp.oblig4web.beans.KontoTransaksjonFacadeLocal;
 
 /**
  *
  * @author Timur Samkharadze
  */
-public class Account extends HttpServlet {
+public class Transaction extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static final String ACTION = "action";
     private static final String GET_ALL = "get-all";
     private static final String GET_BY_ID = "get-by-id";
+    private static final String GET_BY_ACCOUNT = "get-by-acc";
     private static final String CREATE = "create";
     @EJB
-    private KontoFacadeLocal kontoIface;
+    private KontoTransaksjonFacadeLocal trIface;
     /**
      * POJO to JSON converter
      */
@@ -47,6 +45,7 @@ public class Account extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         //sjekker om bruker har tilgang til servlet
         if (request.getSession(false) == null || request.getSession().getAttribute("username") == null) {
             response.sendError(403, "access denied ");
@@ -62,24 +61,26 @@ public class Account extends HttpServlet {
             return;
         }
         switch (action) {
-            case CREATE: //skaper ny konto
-                createKonto(request, response);
+            case GET_ALL:
+                output = getAllTransactions();
                 break;
-            case GET_ALL://returnerer alle kontoer
-                output = gson.toJson(kontoIface.findAll());
+            case GET_BY_ACCOUNT:
+                output = getTrByAccNmbr(request, response);
                 break;
-            case GET_BY_ID: //returnerer konto med gitt id
-                //TODO implemnent returnere konto med gitt id funksjon
+            case CREATE:
+                //TODO implement create transaction function
                 break;
             default:
                 throw new AssertionError();
         }
         try {
             out.println(output);
-        } finally {
+        }
+        finally {
             out.flush();
             out.close();
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -124,61 +125,28 @@ public class Account extends HttpServlet {
     }// </editor-fold>
 
     /**
-     * <p>Lagrer ny konto i database
+     * <p>returnerer alle transaksjoner i form av JSON String
+     *
+     * @return
+     */
+    private String getAllTransactions() {
+        return this.gson.toJson(trIface.findAll());
+    }
+
+    /**
+     * 
      * @param request
      * @param response
      * @return
      * @throws IOException 
      */
-    private String createKonto(HttpServletRequest request, HttpServletResponse response) throws IOException {
-                        Konto k = new Konto();
-                //setter person id
-                String personId = request.getParameter("personId");
-                if (personId == null || personId.isEmpty()) {
-                    response.sendError(400, "Mangler personId");
-                    return null;
-                } else {
-                    k.setPersonid(Integer.valueOf(personId));
-                }
-                //setter bank id
-                String bankId = request.getParameter("bankId");
-                if (bankId == null || bankId.isEmpty()) {
-                    response.sendError(400, "Mangler bank id");
-                    return null;
-                } else {
-                    k.setBankid(bankId);
-                }
-                //setter kontotype
-                String kontotype = request.getParameter("kontotype");
-                if (kontotype == null || kontotype.isEmpty()) {
-                    response.sendError(400, "Mangler kontotype");
-                    return null;
-                } else {
-                    k.setKontotype(kontotype);
-                }
-                //setter kontonummer
-                String kontonummer = request.getParameter("kontonummer");
-                if (kontonummer == null || kontonummer.isEmpty()) {
-                    response.sendError(400, "Mangler kontonummer");
-                    return null;
-                } else {
-                    k.setKontonr(kontonummer);
-                }
-                //setter endringsdato
-                k.setSisteEndringsTidspunkt(new Date());
-                //setter oppstartssaldo
-                String saldo = request.getParameter("saldo");
-                if (saldo == null || saldo.isEmpty()) {
-                    k.setSaldo(0.0);
-                } else {
-                    k.setSaldo(Double.valueOf(saldo));
-                }
-                try {
-                    kontoIface.create(k);
-                    return gson.toJson("konto created successfully");
-                } catch(Exception e){
-                    return e.getCause().getMessage();
-                }
-                
+    private String getTrByAccNmbr(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String param = request.getParameter("accnmbr");
+        if (param == null || param.isEmpty()) {
+            response.sendError(400, "bad id");
+            return null;
+        }
+        int accNmbr = Integer.valueOf(param);
+        return this.gson.toJson(this.trIface.findByAccNmbr(accNmbr));
     }
 }

@@ -47,7 +47,7 @@ public class Login extends HttpServlet {
             }
         }
         else { // log in as client
-            //TODO 
+            //TODO do nothing, deprecated
         }
 
     }

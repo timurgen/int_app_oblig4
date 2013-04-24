@@ -20,6 +20,10 @@
         <servlet-name>Account</servlet-name>
         <servlet-class>no.hin.stg.intapp.oblig4web.servlet.Account</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Transaction</servlet-name>
+        <servlet-class>no.hin.stg.intapp.oblig4web.servlet.Transaction</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Kunde</servlet-name>
         <url-pattern>/Kunde</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>Account</servlet-name>
         <url-pattern>/Account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Transaction</servlet-name>
+        <url-pattern>/Transaction</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

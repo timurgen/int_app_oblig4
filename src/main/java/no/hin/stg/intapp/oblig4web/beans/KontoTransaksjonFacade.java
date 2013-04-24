@@ -4,10 +4,12 @@
  */
 package no.hin.stg.intapp.oblig4web.beans;
 
+import java.util.List;
 import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import no.hin.stg.intapp.oblig4web.entities.KontoTransaksjon;
 
 /**
@@ -27,6 +29,14 @@ public class KontoTransaksjonFacade extends AbstractFacade<KontoTransaksjon> imp
 
     public KontoTransaksjonFacade() {
         super(KontoTransaksjon.class);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<KontoTransaksjon> findByAccNmbr(int accNmbr) {
+        Query trByAccNmbr = getEntityManager().createNamedQuery("KontoTransaksjon.findByFraKonto");
+        trByAccNmbr.setParameter("fraKonto", accNmbr);
+        return trByAccNmbr.getResultList();
     }
     
 }

@@ -26,6 +26,8 @@ public interface KontoTransaksjonFacadeLocal {
     List<KontoTransaksjon> findAll();
 
     List<KontoTransaksjon> findRange(int[] range);
+    
+    List<KontoTransaksjon> findByAccNmbr(int accNmbr);
 
     int count();
     
