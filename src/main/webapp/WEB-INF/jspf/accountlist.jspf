@@ -1,0 +1,67 @@
+<%-- 
+    Document: accountlist
+    Accountlist widget that can be embedded to another web sides
+--%>
+<%@ page pageEncoding="UTF-8" %>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+    var clickedAccountId;
+    $(document).ready(function() {
+        loadTableData();
+    });
+    /**
+     * 
+     * @returns {undefined}
+     */
+    function loadTableData() {
+        var action = "action=get-all";
+        $.getJSON('Account', action, function(data) {
+            $.each(data, function(key, value) {
+                $("#idAccTable tbody").append('<tr style="cursor: pointer;">' +
+                        '<td>' +
+                        value.id +
+                        '</td>' +
+                        '<td>' +
+                        value.personid +
+                        '</td>' +
+                        '<td>' +
+                        value.bankid +
+                        '</td>' +
+                        '<td>' +
+                        value.kontotype +
+                        '</td>'+
+                        '<td>'+
+                        value.kontonr+
+                        '</td>'+
+                        '<td>'+
+                        value.saldo+
+                        '</td>'+
+                        '<td>'+
+                        value.sisteEndringsTidspunkt+
+                        '</td>'+
+                        '</tr>');
+                $("#idAccTable tbody tr:last").click(function(){
+                    $("#idTrHistTable").empty(); //fjerner eventuelt gammelt innhold
+                    //sender json for å få transaksjoner
+                    //fyller tabell opp med nye verdier
+                    $("#idTrHistDialog").dialog("open");
+                });
+            });
+        });
+    }
+
+</script>
+<div class="container">
+    <table class="table table-striped table-bordered" id="idAccTable">
+        <tbody>
+        <th>ID</th>
+        <th>Kontoeier</th>
+        <th>Bank id</th>
+        <th>Kontotype</th>
+        <th>Kontonummer</th>
+        <th>Saldo</th>
+        <th>Sist endringsdate</th>
+        </tbody>
+    </table>    
+</div>
+

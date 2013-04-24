@@ -1,0 +1,121 @@
+<%-- 
+Add new client widget, innholder knapper, former, skripter 
+og alle andre nødvendige elementer for å lage nye brukere
+--%>
+<%@ page pageEncoding="UTF-8" %>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script>
+    $(function() {
+        //Click event listener til "Add new account" knappa
+        $("#idModalFormAddClient").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 800,
+            modal: true,
+            buttons: {
+                "Create an account": function() {
+                    createAccount();
+                },
+                "Cansel": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+        //listener
+        $("#idButtonAddKunde").button().click(function() {
+            $("#idModalFormAddClient").dialog({
+                buttons: {
+                    "Create an account": function() {
+                        createAccount();
+                    },
+                    "Cansel": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            $("#idMessage").removeClass();
+            $("#idMessage").html("");
+            $("#idModalFormAddClient").dialog("open");
+        });
+        //datapiker til modal form
+        $("#birthdate").datepicker();
+    });
+    /**
+     * <p>Samler data fra formflter og sender til tjener for å lagre bruker i database
+     * @returns {undefined}
+     */
+    function createAccount() {
+        //samler data
+        var data = {
+            name: $("#name").val(),
+            birthdate: $("#birthdate").val(),
+            idNumber: $("#personalid").val(),
+            pinCode: $("#pinkode").val(),
+            password: $("#password").val(),
+            comment: $("#comment").val(),
+            addresse1: $("#addresse1").val(),
+            addresse2: $("#addresse2").val(),
+            postNumber: $("#postnumber").val(),
+            postSted: $("#poststed").val()
+        };
+        $.ajax({
+            url: "Kunde?action=create",
+            type: "POST",
+            datatype: "json",
+            data: data,
+            async: false,
+            success: function(result) {
+                $("#idModalFormAddClient").dialog({
+                    buttons: {
+                        "Close": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $("#idMessage").addClass('badge badge-success');
+                $("#idMessage").html('<p>' + result + '</p>');
+            },
+            error: function(xhr, status, error) {
+                $("#idMessage").addClass('badge badge-important');
+                $("#idMessage").html('<p>' + error + '</p>');
+            }
+        });
+
+        //siste steg, oppdatere tabell
+        loadTableData(); // funksjon ligger i clientlist.jspf
+    }
+</script>
+<button id="idButtonAddKunde" class="btn">Add new client</button>
+<!-- modal form add new client-->
+<div id="idModalFormAddClient" title="Create new account">
+    <div class="badge" id="idMessage"></div>
+    <form>
+        <fieldset>
+            <div class="container span3">
+                <label for="name">Navn:</label>
+                <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+                <label for="birthdate">Fødslsdato:</label>
+                <input type="text" name="birthdate" id="birthdate" class="text ui-widget-content ui-corner-all" />
+                <label for="personalid">Fødselsnummer:</label>
+                <input type="text" name="personalid" id="personalid" class="text ui-widget-content ui-corner-all" />   
+                <label for="pinkode">PIN kode: (4 tall)</label>
+                <input type="text" name="pinkode" id="pinkode" class="text ui-widget-content ui-corner-all" />
+                <label for="password">Passord:</label>
+                <input type="text" name="password" id="password" class="text ui-widget-content ui-corner-all" />
+                <label for="comment">Kommentar: (max 250 ord)</label>
+                <input type="text" name="comment" id="comment" class="text ui-widget-content ui-corner-all" />
+            </div>
+            <div class="container span3">
+                <label for="addresse1">Adresse linje 1:</label>
+                <input type="text" name="addresse1" id="addresse1" class="text ui-widget-content ui-corner-all" />
+                <label for="addresse2">Adresse linje 2:</label>
+                <input type="text" name="addresse2" id="addresse2" class="text ui-widget-content ui-corner-all" />
+                <label for="postnumber">Postnummer:</label>
+                <input type="text" name="postnumber" id="postnumber" class="text ui-widget-content ui-corner-all" />
+                <label for="poststed">Poststed:</label>
+                <input type="text" name="poststed" id="poststed" class="text ui-widget-content ui-corner-all" />                
+            </div>
+        </fieldset>
+    </form>
+</div>

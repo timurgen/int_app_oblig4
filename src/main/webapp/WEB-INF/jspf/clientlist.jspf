@@ -1,0 +1,86 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+    $(document).ready(function() {
+        //Fyller opp tabell med kunder fra DB
+        loadTableData();
+    });
+
+    /**
+     * <p>Laster klientliste fra tjener og oppdaterer tabel
+     * @returns {undefined}
+     */
+    function loadTableData() {
+        $.getJSON("Kunde", "action=get-all", function(data) {
+            if (data instanceof Array && data.length > 0) {
+                $("#idTbody").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#idTbody").append('<tr>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].id + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].navn + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].fodselsdato + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].fodselsnummer + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].adresselinje1 + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].adresselinje2 + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].postnummer + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].poststed + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].pINkode + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].passord + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="clients.jsp?client=' + data[i].id + '">' + data[i].kommentar + '</a>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<i class="icon-edit"></i>');
+                    $("#idTbody").find('tr:last').append('<td>');
+                    $("#idTbody").find('td:last').append('<a href="#"><i class="icon-remove"></i></a>');
+                    $('td:last').find('i:last').click(function() {
+                        var row = $('#idTbody').find('tr:last');
+                        var col = $(row).find('td:first');
+                        alert(col.html());
+                    });
+                }
+
+            } else {
+                $("#idClientListTable").append("<tr><td>Clients not found</td></tr>");
+            }
+
+        });
+    }
+</script>
+<%@include file="add_new_client_button.jspf" %>
+
+<div class="container" id="idClientList" style="padding: 5px">
+    <table class="table table-bordered" title="clients" id="idClientListTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Fødselsdato</th>
+                <th>Fødselsnummer</th>
+                <th>Adresse linje 1</th>
+                <th>Adresse linje 2</th>
+                <th>Postnummer</th>
+                <th>Poststed</th>
+                <th>PIN kode</th>
+                <th>Password</th>
+                <th>Kommentar</th>
+            </tr>
+        </thead>
+        <tbody id="idTbody">
+
+        </tbody>
+    </table>
+    
+</div>
+
+

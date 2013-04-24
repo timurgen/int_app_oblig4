@@ -1,0 +1,14 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="index.jsp" title="En bank for alle brukere"> Hin Bank og Fallittkasse</a>
+        <ul class="nav">
+            <li><a href="clients.jsp" title="client relationship">Kunder</a></li>
+            <li><a href="accounts.jsp" title="account management">Kontoer</a></li>
+        </ul>
+        <ul class="nav pull-right">
+            <li><a href="Logof">Log out</a></li>
+        </ul>
+    </div>
+</div>

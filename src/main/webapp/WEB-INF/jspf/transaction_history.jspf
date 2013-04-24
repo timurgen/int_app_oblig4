@@ -1,0 +1,43 @@
+<%-- 
+    Transaksjonshistorie for en konto,
+    åpnes som modal vindu når en kliker 
+    på tilsvarende konto i kontoliste
+--%>
+<%@ page pageEncoding="UTF-8" %>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script>
+    $(function() {//modal vindu med transaksjonshistorie
+        $("#idTrHistDialog").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 800,
+            modal: true,
+            buttons: {
+                "Pengeoverføring": function() {
+                    //TODO
+                },
+                "Cansel": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+</script>
+
+<div id="idTrHistDialog" title="Transaksjonshistorie">
+    <div class="container">
+        <table class="table table-striped table-bordered" id="idTrHistTable">
+            <tbody>
+            <th>ID</th>
+            <th>Tidspunkt</th>
+            <th>Fra konto</th>
+            <th>Til konto</th>
+            <th>Beskrivelse</th>
+            <th>Type</th>
+            <th>Initsiator</th>
+            <th>Belop</th>
+            </tbody>
+        </table>    
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <a href="#" class="brand">HiN Bank og Fallittkasse</a>
+        </ul>        
+    </div>
+
+</div>
+
+<div class="container">
+    <form class="form-signin" action="Login">
+        <h2 class="form-signin-heading">Administrator login</h2>
+        <input type="text" class="input-block-level" placeholder="Name (admin), password (pass)" name="name">
+        <input type="password" class="input-block-level" placeholder="Password (pass)" name="pass">
+        <input type="hidden" name="asadmin" value="asadmin">
+        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+    </form>
+</div>
+

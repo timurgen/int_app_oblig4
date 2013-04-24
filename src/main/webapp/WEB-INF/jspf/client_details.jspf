@@ -1,0 +1,24 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<script>
+    //modal window with account history
+    $(function() {
+
+    });
+
+</script>
+
+<div id="idModalWindowClientHistory">
+    <table>
+        <thead>
+            <th>Bank id</th>
+            <th>Kontotype</th>
+            <th>Kontonummer</th>
+            <th>Saldo</th>
+            <th>Endringsdate</th>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+</div>
