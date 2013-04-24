@@ -34,6 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PersonKontoMap implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
     @EmbeddedId
     protected PersonKontoMapPK personKontoMapPK;
     @Basic(optional = false)
@@ -45,42 +48,83 @@ public class PersonKontoMap implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date gyldigTilOgMed;
 
+    /**
+     *
+     */
     public PersonKontoMap() {
     }
 
+    /**
+     *
+     * @param personKontoMapPK
+     */
     public PersonKontoMap(PersonKontoMapPK personKontoMapPK) {
         this.personKontoMapPK = personKontoMapPK;
     }
 
+    /**
+     *
+     * @param personKontoMapPK
+     * @param gyldigFraOgMed
+     */
     public PersonKontoMap(PersonKontoMapPK personKontoMapPK, Date gyldigFraOgMed) {
         this.personKontoMapPK = personKontoMapPK;
         this.gyldigFraOgMed = gyldigFraOgMed;
     }
 
+    /**
+     *
+     * @param personid
+     * @param kontoid
+     */
     public PersonKontoMap(int personid, int kontoid) {
         this.personKontoMapPK = new PersonKontoMapPK(personid, kontoid);
     }
 
+    /**
+     *
+     * @return
+     */
     public PersonKontoMapPK getPersonKontoMapPK() {
         return personKontoMapPK;
     }
 
+    /**
+     *
+     * @param personKontoMapPK
+     */
     public void setPersonKontoMapPK(PersonKontoMapPK personKontoMapPK) {
         this.personKontoMapPK = personKontoMapPK;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getGyldigFraOgMed() {
         return gyldigFraOgMed;
     }
 
+    /**
+     *
+     * @param gyldigFraOgMed
+     */
     public void setGyldigFraOgMed(Date gyldigFraOgMed) {
         this.gyldigFraOgMed = gyldigFraOgMed;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getGyldigTilOgMed() {
         return gyldigTilOgMed;
     }
 
+    /**
+     *
+     * @param gyldigTilOgMed
+     */
     public void setGyldigTilOgMed(Date gyldigTilOgMed) {
         this.gyldigTilOgMed = gyldigTilOgMed;
     }

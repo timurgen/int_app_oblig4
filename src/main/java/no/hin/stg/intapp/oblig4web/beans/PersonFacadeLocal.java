@@ -15,17 +15,47 @@ import no.hin.stg.intapp.oblig4web.entities.Person;
 @Local
 public interface PersonFacadeLocal {
 
+    /**
+     *
+     * @param person
+     */
     void create(Person person);
 
+    /**
+     *
+     * @param person
+     */
     void edit(Person person);
 
+    /**
+     *
+     * @param person
+     */
     void remove(Person person);
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     Person find(Object id);
 
+    /**
+     *
+     * @return
+     */
     List<Person> findAll();
 
+    /**
+     *
+     * @param range
+     * @return
+     */
     List<Person> findRange(int[] range);
 
+    /**
+     *
+     * @return
+     */
     int count();
 }

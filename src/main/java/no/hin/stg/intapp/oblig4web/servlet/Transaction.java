@@ -149,4 +149,15 @@ public class Transaction extends HttpServlet {
         int accNmbr = Integer.valueOf(param);
         return this.gson.toJson(this.trIface.findByAccNmbr(accNmbr));
     }
+    
+    private String createTransaction(HttpServletRequest request, HttpServletResponse response) {
+        //TODO
+        return null;
+    }
+    
+    private String updateSaldo() {
+        //TODO
+        return null;
+        
+    }
 }

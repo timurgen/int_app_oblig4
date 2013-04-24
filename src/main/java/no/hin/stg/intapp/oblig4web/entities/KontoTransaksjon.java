@@ -83,13 +83,32 @@ public class KontoTransaksjon implements Serializable {
     @Column(name = "Belop")
     private double belop;
 
+    /**
+     *
+     */
     public KontoTransaksjon() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public KontoTransaksjon(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param id
+     * @param registreringsTidspunkt
+     * @param transaksjonsTid
+     * @param fraKonto
+     * @param tilKonto
+     * @param transkasjonsbeskrivelse
+     * @param transType
+     * @param initsiator
+     * @param belop
+     */
     public KontoTransaksjon(Integer id, Date registreringsTidspunkt, Date transaksjonsTid, int fraKonto, int tilKonto, String transkasjonsbeskrivelse, int transType, int initsiator, double belop) {
         this.id = id;
         this.registreringsTidspunkt = registreringsTidspunkt;
@@ -102,74 +121,146 @@ public class KontoTransaksjon implements Serializable {
         this.belop = belop;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getRegistreringsTidspunkt() {
         return registreringsTidspunkt;
     }
 
+    /**
+     *
+     * @param registreringsTidspunkt
+     */
     public void setRegistreringsTidspunkt(Date registreringsTidspunkt) {
         this.registreringsTidspunkt = registreringsTidspunkt;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getTransaksjonsTid() {
         return transaksjonsTid;
     }
 
+    /**
+     *
+     * @param transaksjonsTid
+     */
     public void setTransaksjonsTid(Date transaksjonsTid) {
         this.transaksjonsTid = transaksjonsTid;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getFraKonto() {
         return fraKonto;
     }
 
+    /**
+     *
+     * @param fraKonto
+     */
     public void setFraKonto(int fraKonto) {
         this.fraKonto = fraKonto;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTilKonto() {
         return tilKonto;
     }
 
+    /**
+     *
+     * @param tilKonto
+     */
     public void setTilKonto(int tilKonto) {
         this.tilKonto = tilKonto;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTranskasjonsbeskrivelse() {
         return transkasjonsbeskrivelse;
     }
 
+    /**
+     *
+     * @param transkasjonsbeskrivelse
+     */
     public void setTranskasjonsbeskrivelse(String transkasjonsbeskrivelse) {
         this.transkasjonsbeskrivelse = transkasjonsbeskrivelse;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTransType() {
         return transType;
     }
 
+    /**
+     *
+     * @param transType
+     */
     public void setTransType(int transType) {
         this.transType = transType;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getInitsiator() {
         return initsiator;
     }
 
+    /**
+     *
+     * @param initsiator
+     */
     public void setInitsiator(int initsiator) {
         this.initsiator = initsiator;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getBelop() {
         return belop;
     }
 
+    /**
+     *
+     * @param belop
+     */
     public void setBelop(double belop) {
         this.belop = belop;
     }

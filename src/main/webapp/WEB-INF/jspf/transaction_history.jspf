@@ -1,12 +1,13 @@
 <%-- 
     Transaksjonshistorie for en konto,
-    åpnes som modal vindu når en kliker 
+    åpnes som modal vindu når en trykker 
     på tilsvarende konto i kontoliste
 --%>
 <%@ page pageEncoding="UTF-8" %>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script>
+
     /**
      * <p>Transaksjonshisorie
      * @returns {undefined}
@@ -41,12 +42,12 @@
     $(function() {
         $("#idOverforePengerWindow").dialog({
             autoOpen: false,
-            height: 480,
-            width: 640,
+            height: 300,
+            width: 300,
             modal: true,
             buttons: {
                 "Overføre": function() {
-                    overforePenger();
+
                 },
                 "Cansel": function() {
                     $(this).dialog("close");
@@ -60,7 +61,7 @@
      * @param {type} accId
      * @returns {undefined} 
      * */
-    function fillTransactionHistory(accId) {
+    function fillTransactionHistory(accId, saldo) {
 
         $("#idTrHistTable tbody").empty(); //fjerner eventuelt gammelt innhold
         $("#idMessage").empty();
@@ -94,6 +95,8 @@
             }
 
         });
+        $("#idSaldo").empty();
+        $("#idSaldo").append('saldo: ' + saldo);
         $("#idTrHistDialog").dialog("open");
     }
 
@@ -110,10 +113,8 @@
     }
 
     function setteInnPenger() {
-
+        $("#idSetteInnPengerWindow").dialog("open");
     }
-
-
 </script>
 
 <div id="idTrHistDialog" title="Transaksjonshistorie">
@@ -134,10 +135,43 @@
 
             </tbody>
         </table>
+        <div class="container span2">
+            <p id="idSaldo"></p>
+        </div>
         <div class="badge badge-info offset2" id="idMessage"></div>
     </div>
 </div>
 
-<div id="idOverforePengerWindow" title="Ovrføre penger">
+<div id="idOverforePengerWindow" title="Overføre penger">
+    <div class="container span2" id="idMessage"></div>
+    <br/>
+    <label for="idBelopOverfore">Beløp:</label>
+    <input type="text" placeholder="beløp" id="idBelopOverfore" name="belop" />
+    <label for="idBelop">Til konto:</label>
+    <input type="text" placeholder="til konto" id="idTilKonto" name="konto" />
+    <div class="container span2" id="idSaldo"></div>
+</div>
 
+<script>
+    $(function() {
+        $("#idSetteInnPengerWindow").dialog({
+            autoOpen: false,
+            height: 150,
+            width: 300,
+            modal: true,
+            buttons: {
+                "Sette inn": function() {
+                    var belop = $("#idBelopSetteInn").val();
+                    alert(belop);
+                },
+                "Cansel": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+</script>
+<div id="idSetteInnPengerWindow" title="Sette inn penger">
+    <label for="idBelopSetteInn">Beløp:</label>
+    <input type="text" placeholder="beløp" id="idBelopSetteInn" name="belop" />
 </div>

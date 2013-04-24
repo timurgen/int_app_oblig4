@@ -15,17 +15,47 @@ import no.hin.stg.intapp.oblig4web.entities.Konto;
 @Local
 public interface KontoFacadeLocal {
 
+    /**
+     *
+     * @param konto
+     */
     void create(Konto konto);
 
+    /**
+     *
+     * @param konto
+     */
     void edit(Konto konto);
 
+    /**
+     *
+     * @param konto
+     */
     void remove(Konto konto);
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     Konto find(Object id);
 
+    /**
+     *
+     * @return
+     */
     List<Konto> findAll();
 
+    /**
+     *
+     * @param range
+     * @return
+     */
     List<Konto> findRange(int[] range);
 
+    /**
+     *
+     * @return
+     */
     int count();
 }

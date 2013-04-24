@@ -23,15 +23,27 @@ public class KontoTransaksjonFacade extends AbstractFacade<KontoTransaksjon> imp
     @PersistenceContext(unitName = "no.hin.stg.intapp_oblig4web_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public KontoTransaksjonFacade() {
         super(KontoTransaksjon.class);
     }
 
+    /**
+     *
+     * @param accNmbr
+     * @return
+     */
     @Override
     @SuppressWarnings("unchecked")
     public List<KontoTransaksjon> findByAccNmbr(int accNmbr) {

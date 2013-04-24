@@ -97,13 +97,32 @@ public class Person implements Serializable {
     @Column(name = "id")
     private Integer id;
 
+    /**
+     *
+     */
     public Person() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Person(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param id
+     * @param fodselsdato
+     * @param fodselsnummer
+     * @param navn
+     * @param postnummer
+     * @param passord
+     * @param pINkode
+     * @param poststed
+     * @param kommentar
+     */
     public Person(Integer id, Date fodselsdato, String fodselsnummer, String navn, String postnummer, String passord, int pINkode, String poststed, String kommentar) {
         this.id = id;
         this.fodselsdato = fodselsdato;
@@ -116,90 +135,178 @@ public class Person implements Serializable {
         this.kommentar = kommentar;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getFodselsdato() {
         return fodselsdato;
     }
 
+    /**
+     *
+     * @param fodselsdato
+     */
     public void setFodselsdato(Date fodselsdato) {
         this.fodselsdato = fodselsdato;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFodselsnummer() {
         return fodselsnummer;
     }
 
+    /**
+     *
+     * @param fodselsnummer
+     */
     public void setFodselsnummer(String fodselsnummer) {
         this.fodselsnummer = fodselsnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNavn() {
         return navn;
     }
 
+    /**
+     *
+     * @param navn
+     */
     public void setNavn(String navn) {
         this.navn = navn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAdresselinje1() {
         return adresselinje1;
     }
 
+    /**
+     *
+     * @param adresselinje1
+     */
     public void setAdresselinje1(String adresselinje1) {
         this.adresselinje1 = adresselinje1;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAdresselinje2() {
         return adresselinje2;
     }
 
+    /**
+     *
+     * @param adresselinje2
+     */
     public void setAdresselinje2(String adresselinje2) {
         this.adresselinje2 = adresselinje2;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPostnummer() {
         return postnummer;
     }
 
+    /**
+     *
+     * @param postnummer
+     */
     public void setPostnummer(String postnummer) {
         this.postnummer = postnummer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassord() {
         return passord;
     }
 
+    /**
+     *
+     * @param passord
+     */
     public void setPassord(String passord) {
         this.passord = passord;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPINkode() {
         return pINkode;
     }
 
+    /**
+     *
+     * @param pINkode
+     */
     public void setPINkode(int pINkode) {
         this.pINkode = pINkode;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPoststed() {
         return poststed;
     }
 
+    /**
+     *
+     * @param poststed
+     */
     public void setPoststed(String poststed) {
         this.poststed = poststed;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getKommentar() {
         return kommentar;
     }
 
+    /**
+     *
+     * @param kommentar
+     */
     public void setKommentar(String kommentar) {
         this.kommentar = kommentar;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }

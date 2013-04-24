@@ -26,26 +26,50 @@ public class PersonKontoMapPK implements Serializable {
     @Column(name = "Konto_id")
     private int kontoid;
 
+    /**
+     *
+     */
     public PersonKontoMapPK() {
     }
 
+    /**
+     *
+     * @param personid
+     * @param kontoid
+     */
     public PersonKontoMapPK(int personid, int kontoid) {
         this.personid = personid;
         this.kontoid = kontoid;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPersonid() {
         return personid;
     }
 
+    /**
+     *
+     * @param personid
+     */
     public void setPersonid(int personid) {
         this.personid = personid;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getKontoid() {
         return kontoid;
     }
 
+    /**
+     *
+     * @param kontoid
+     */
     public void setKontoid(int kontoid) {
         this.kontoid = kontoid;
     }

@@ -15,19 +15,54 @@ import no.hin.stg.intapp.oblig4web.entities.KontoTransaksjon;
 @Local
 public interface KontoTransaksjonFacadeLocal {
 
+    /**
+     *
+     * @param kontoTransaksjon
+     */
     void create(KontoTransaksjon kontoTransaksjon);
 
+    /**
+     *
+     * @param kontoTransaksjon
+     */
     void edit(KontoTransaksjon kontoTransaksjon);
 
+    /**
+     *
+     * @param kontoTransaksjon
+     */
     void remove(KontoTransaksjon kontoTransaksjon);
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     KontoTransaksjon find(Object id);
 
+    /**
+     *
+     * @return
+     */
     List<KontoTransaksjon> findAll();
 
+    /**
+     *
+     * @param range
+     * @return
+     */
     List<KontoTransaksjon> findRange(int[] range);
 
+    /**
+     *
+     * @param accNmbr
+     * @return
+     */
     List<KontoTransaksjon> findByAccNmbr(int accNmbr);
 
+    /**
+     *
+     * @return
+     */
     int count();
 }

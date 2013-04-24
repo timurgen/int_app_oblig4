@@ -42,7 +42,7 @@
                         '<td><i class="icon-remove"></td>' +
                         '</tr>');
                 $("#idAccTable tbody tr:last").click(function() {
-                    fillTransactionHistory(value.kontonr);//se transaction_history.jspf
+                    fillTransactionHistory(value.kontonr,value.saldo);//se transaction_history.jspf
                 });
             });
         });

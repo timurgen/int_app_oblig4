@@ -28,6 +28,7 @@ public class Account extends HttpServlet {
     private static final String GET_ALL = "get-all";
     private static final String GET_BY_ID = "get-by-id";
     private static final String CREATE = "create";
+    private static final String GET_SALDO = "get-saldo";
     @EJB
     private KontoFacadeLocal kontoIface;
     /**
@@ -71,6 +72,9 @@ public class Account extends HttpServlet {
             case GET_BY_ID: //returnerer konto med gitt id
                 //TODO implemnent returnere konto med gitt id funksjon
                 break;
+            case GET_SALDO:
+                //TODO
+                output = getSaldo(request, response);
             default:
                 throw new AssertionError();
         }
@@ -183,5 +187,10 @@ public class Account extends HttpServlet {
             return e.getCause().getMessage();
         }
 
+    }
+    
+    
+    private String getSaldo(HttpServletRequest request, HttpServletResponse response) {
+        return null;
     }
 }

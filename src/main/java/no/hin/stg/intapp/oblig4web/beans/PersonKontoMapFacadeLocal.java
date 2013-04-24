@@ -15,17 +15,47 @@ import no.hin.stg.intapp.oblig4web.entities.PersonKontoMap;
 @Local
 public interface PersonKontoMapFacadeLocal {
 
+    /**
+     *
+     * @param personKontoMap
+     */
     void create(PersonKontoMap personKontoMap);
 
+    /**
+     *
+     * @param personKontoMap
+     */
     void edit(PersonKontoMap personKontoMap);
 
+    /**
+     *
+     * @param personKontoMap
+     */
     void remove(PersonKontoMap personKontoMap);
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     PersonKontoMap find(Object id);
 
+    /**
+     *
+     * @return
+     */
     List<PersonKontoMap> findAll();
 
+    /**
+     *
+     * @param range
+     * @return
+     */
     List<PersonKontoMap> findRange(int[] range);
 
+    /**
+     *
+     * @return
+     */
     int count();
 }

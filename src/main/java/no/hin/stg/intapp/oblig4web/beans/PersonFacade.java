@@ -21,11 +21,18 @@ public class PersonFacade extends AbstractFacade<Person> implements PersonFacade
     @PersistenceContext(unitName = "no.hin.stg.intapp_oblig4web_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public PersonFacade() {
         super(Person.class);
     }

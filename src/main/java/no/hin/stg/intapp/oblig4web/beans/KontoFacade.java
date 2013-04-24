@@ -21,11 +21,18 @@ public class KontoFacade extends AbstractFacade<Konto> implements KontoFacadeLoc
     @PersistenceContext(unitName = "no.hin.stg.intapp_oblig4web_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public KontoFacade() {
         super(Konto.class);
     }

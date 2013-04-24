@@ -76,13 +76,30 @@ public class Konto implements Serializable {
     @Column(name = "Saldo")
     private double saldo;
 
+    /**
+     *
+     */
     public Konto() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Konto(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param id
+     * @param personid
+     * @param bankid
+     * @param kontotype
+     * @param kontonr
+     * @param sisteEndringsTidspunkt
+     * @param saldo
+     */
     public Konto(Integer id, int personid, String bankid, String kontotype, String kontonr, Date sisteEndringsTidspunkt, double saldo) {
         this.id = id;
         this.personid = personid;
@@ -93,58 +110,114 @@ public class Konto implements Serializable {
         this.saldo = saldo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPersonid() {
         return personid;
     }
 
+    /**
+     *
+     * @param personid
+     */
     public void setPersonid(int personid) {
         this.personid = personid;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBankid() {
         return bankid;
     }
 
+    /**
+     *
+     * @param bankid
+     */
     public void setBankid(String bankid) {
         this.bankid = bankid;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getKontotype() {
         return kontotype;
     }
 
+    /**
+     *
+     * @param kontotype
+     */
     public void setKontotype(String kontotype) {
         this.kontotype = kontotype;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getKontonr() {
         return kontonr;
     }
 
+    /**
+     *
+     * @param kontonr
+     */
     public void setKontonr(String kontonr) {
         this.kontonr = kontonr;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getSisteEndringsTidspunkt() {
         return sisteEndringsTidspunkt;
     }
 
+    /**
+     *
+     * @param sisteEndringsTidspunkt
+     */
     public void setSisteEndringsTidspunkt(Date sisteEndringsTidspunkt) {
         this.sisteEndringsTidspunkt = sisteEndringsTidspunkt;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getSaldo() {
         return saldo;
     }
 
+    /**
+     *
+     * @param saldo
+     */
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
