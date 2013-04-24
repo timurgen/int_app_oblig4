@@ -28,5 +28,4 @@ public interface KontoFacadeLocal {
     List<Konto> findRange(int[] range);
 
     int count();
-    
 }

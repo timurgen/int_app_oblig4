@@ -51,7 +51,7 @@ public class Kunde extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //sjekker om bruker har tilgang til servlet
-        if(request.getSession(false) == null || request.getSession().getAttribute("username") == null){
+        if (request.getSession(false) == null || request.getSession().getAttribute("username") == null) {
             response.sendError(403, "access denied ");
             return;
         }
@@ -86,7 +86,8 @@ public class Kunde extends HttpServlet {
 
         try {
             out.println(output);
-        } finally {
+        }
+        finally {
             out.flush();
             out.close();
         }
@@ -138,6 +139,7 @@ public class Kunde extends HttpServlet {
     /**
      * <p>Returnerer JSON representasjon av Person objekt
      * <p> password felt er med som klar tekst
+     *
      * @param request HttpServlet request
      * @param response HttpServlet response
      * @return JSON representasjon av <code>Person</code> objekt
@@ -160,11 +162,11 @@ public class Kunde extends HttpServlet {
     }
 
     /**
-     * 
+     *
      * @param request
      * @param response
      * @return
-     * @throws IOException 
+     * @throws IOException
      */
     private String createPerson(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Person p = new Person();
@@ -174,7 +176,8 @@ public class Kunde extends HttpServlet {
             DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
             df.setLenient(true);
             p.setFodselsdato(df.parse(birthdate));
-        } catch (ParseException ex) {
+        }
+        catch (ParseException ex) {
             Logger.getLogger(Kunde.class.getName()).log(Level.SEVERE, null, ex);
         }
         //setter fødselsnummer
@@ -241,10 +244,11 @@ public class Kunde extends HttpServlet {
         try {
             personFacade.create(p);
             return "user created successfully";
-        } catch(Exception e) {
+        }
+        catch (Exception e) {
             return e.getCause().getMessage();
         }
-        
-        
+
+
     }
 }

@@ -44,6 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Person.findByKommentar", query = "SELECT p FROM Person p WHERE p.kommentar = :kommentar"),
     @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id")})
 public class Person implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
@@ -227,5 +228,4 @@ public class Person implements Serializable {
     public String toString() {
         return "no.hin.stg.intapp.oblig4web.entities.Person[ id=" + id + " ]";
     }
-    
 }

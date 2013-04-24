@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
  */
 @Embeddable
 public class PersonKontoMapPK implements Serializable {
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "Person_id")
@@ -77,5 +78,4 @@ public class PersonKontoMapPK implements Serializable {
     public String toString() {
         return "no.hin.stg.intapp.oblig4web.entities.PersonKontoMapPK[ personid=" + personid + ", kontoid=" + kontoid + " ]";
     }
-    
 }

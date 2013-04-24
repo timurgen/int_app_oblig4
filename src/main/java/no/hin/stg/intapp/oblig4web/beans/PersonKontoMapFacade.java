@@ -17,6 +17,7 @@ import no.hin.stg.intapp.oblig4web.entities.PersonKontoMap;
 @Stateless
 @Singleton
 public class PersonKontoMapFacade extends AbstractFacade<PersonKontoMap> implements PersonKontoMapFacadeLocal {
+
     @PersistenceContext(unitName = "no.hin.stg.intapp_oblig4web_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -28,5 +29,4 @@ public class PersonKontoMapFacade extends AbstractFacade<PersonKontoMap> impleme
     public PersonKontoMapFacade() {
         super(PersonKontoMap.class);
     }
-    
 }

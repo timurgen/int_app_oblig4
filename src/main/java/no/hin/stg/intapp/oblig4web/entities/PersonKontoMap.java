@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PersonKontoMap.findByGyldigFraOgMed", query = "SELECT p FROM PersonKontoMap p WHERE p.gyldigFraOgMed = :gyldigFraOgMed"),
     @NamedQuery(name = "PersonKontoMap.findByGyldigTilOgMed", query = "SELECT p FROM PersonKontoMap p WHERE p.gyldigTilOgMed = :gyldigTilOgMed")})
 public class PersonKontoMap implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected PersonKontoMapPK personKontoMapPK;
@@ -108,5 +109,4 @@ public class PersonKontoMap implements Serializable {
     public String toString() {
         return "no.hin.stg.intapp.oblig4web.entities.PersonKontoMap[ personKontoMapPK=" + personKontoMapPK + " ]";
     }
-    
 }

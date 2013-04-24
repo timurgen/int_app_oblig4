@@ -12,8 +12,8 @@
     <body>
         <% if (request.getSession().getAttribute("username") != null && request.getSession().getAttribute("username").equals("admin")) {%>
         <%@include file="WEB-INF/jspf/hovdmenu.jspf" %>
-        
-        
+
+
 
         <% } else {%>
         <%@include file="WEB-INF/jspf/loginform.jspf" %>

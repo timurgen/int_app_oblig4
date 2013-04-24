@@ -134,11 +134,11 @@ public class Transaction extends HttpServlet {
     }
 
     /**
-     * 
+     *
      * @param request
      * @param response
      * @return
-     * @throws IOException 
+     * @throws IOException
      */
     private String getTrByAccNmbr(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String param = request.getParameter("accnmbr");

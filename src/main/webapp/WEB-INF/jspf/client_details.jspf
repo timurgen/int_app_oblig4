@@ -11,14 +11,14 @@
 <div id="idModalWindowClientHistory">
     <table>
         <thead>
-            <th>Bank id</th>
-            <th>Kontotype</th>
-            <th>Kontonummer</th>
-            <th>Saldo</th>
-            <th>Endringsdate</th>
+        <th>Bank id</th>
+        <th>Kontotype</th>
+        <th>Kontonummer</th>
+        <th>Saldo</th>
+        <th>Endringsdate</th>
         </thead>
         <tbody>
-            
+
         </tbody>
     </table>
 </div>

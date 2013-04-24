@@ -11,17 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * <p>Login servlet, bruker ganske enkelt autentisering med hardkodede navn og passord til admin 
- * 
+ * <p>Login servlet, bruker ganske enkelt autentisering med hardkodede navn og
+ * passord til admin
+ *
  * @author Timur Samkharadze timur.samkharadze@gmail.com
  */
 public class Login extends HttpServlet {
+
     /**
      * <p> Bruker veldig enkel autentisering
      */
     private static final String NAME = "admin";
     private static final String PASSWORD = "pass";
-    
     private static final long serialVersionUID = 1L;
 
     /**
@@ -43,10 +44,9 @@ public class Login extends HttpServlet {
                 response.sendRedirect("index.jsp");
             } else {
                 response.sendError(403);
-                
+
             }
-        }
-        else { // log in as client
+        } else { // log in as client
             //TODO do nothing, deprecated
         }
 

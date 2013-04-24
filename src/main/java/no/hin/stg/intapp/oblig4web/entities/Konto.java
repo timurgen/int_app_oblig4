@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Konto.findBySisteEndringsTidspunkt", query = "SELECT k FROM Konto k WHERE k.sisteEndringsTidspunkt = :sisteEndringsTidspunkt"),
     @NamedQuery(name = "Konto.findBySaldo", query = "SELECT k FROM Konto k WHERE k.saldo = :saldo")})
 public class Konto implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -172,5 +173,4 @@ public class Konto implements Serializable {
     public String toString() {
         return "no.hin.stg.intapp.oblig4web.entities.Konto[ id=" + id + " ]";
     }
-    
 }

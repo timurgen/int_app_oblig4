@@ -98,9 +98,11 @@ public class Admin extends HttpServlet {
         try {
             this.personIface.count();
             response.getWriter().println("ok");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             response.getWriter().println(e.getMessage());
-        } finally {
+        }
+        finally {
             response.getWriter().close();
         }
 

@@ -17,6 +17,7 @@ import no.hin.stg.intapp.oblig4web.entities.Konto;
 @Stateless
 @Singleton
 public class KontoFacade extends AbstractFacade<Konto> implements KontoFacadeLocal {
+
     @PersistenceContext(unitName = "no.hin.stg.intapp_oblig4web_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -28,5 +29,4 @@ public class KontoFacade extends AbstractFacade<Konto> implements KontoFacadeLoc
     public KontoFacade() {
         super(Konto.class);
     }
-    
 }

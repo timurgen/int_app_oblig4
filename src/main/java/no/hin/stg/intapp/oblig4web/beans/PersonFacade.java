@@ -17,6 +17,7 @@ import no.hin.stg.intapp.oblig4web.entities.Person;
 @Stateless
 @Singleton
 public class PersonFacade extends AbstractFacade<Person> implements PersonFacadeLocal {
+
     @PersistenceContext(unitName = "no.hin.stg.intapp_oblig4web_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -28,5 +29,4 @@ public class PersonFacade extends AbstractFacade<Person> implements PersonFacade
     public PersonFacade() {
         super(Person.class);
     }
-    
 }

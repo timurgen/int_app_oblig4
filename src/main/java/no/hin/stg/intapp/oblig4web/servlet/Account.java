@@ -76,7 +76,8 @@ public class Account extends HttpServlet {
         }
         try {
             out.println(output);
-        } finally {
+        }
+        finally {
             out.flush();
             out.close();
         }
@@ -125,60 +126,62 @@ public class Account extends HttpServlet {
 
     /**
      * <p>Lagrer ny konto i database
+     *
      * @param request
      * @param response
      * @return
-     * @throws IOException 
+     * @throws IOException
      */
     private String createKonto(HttpServletRequest request, HttpServletResponse response) throws IOException {
-                        Konto k = new Konto();
-                //setter person id
-                String personId = request.getParameter("personId");
-                if (personId == null || personId.isEmpty()) {
-                    response.sendError(400, "Mangler personId");
-                    return null;
-                } else {
-                    k.setPersonid(Integer.valueOf(personId));
-                }
-                //setter bank id
-                String bankId = request.getParameter("bankId");
-                if (bankId == null || bankId.isEmpty()) {
-                    response.sendError(400, "Mangler bank id");
-                    return null;
-                } else {
-                    k.setBankid(bankId);
-                }
-                //setter kontotype
-                String kontotype = request.getParameter("kontotype");
-                if (kontotype == null || kontotype.isEmpty()) {
-                    response.sendError(400, "Mangler kontotype");
-                    return null;
-                } else {
-                    k.setKontotype(kontotype);
-                }
-                //setter kontonummer
-                String kontonummer = request.getParameter("kontonummer");
-                if (kontonummer == null || kontonummer.isEmpty()) {
-                    response.sendError(400, "Mangler kontonummer");
-                    return null;
-                } else {
-                    k.setKontonr(kontonummer);
-                }
-                //setter endringsdato
-                k.setSisteEndringsTidspunkt(new Date());
-                //setter oppstartssaldo
-                String saldo = request.getParameter("saldo");
-                if (saldo == null || saldo.isEmpty()) {
-                    k.setSaldo(0.0);
-                } else {
-                    k.setSaldo(Double.valueOf(saldo));
-                }
-                try {
-                    kontoIface.create(k);
-                    return gson.toJson("konto created successfully");
-                } catch(Exception e){
-                    return e.getCause().getMessage();
-                }
-                
+        Konto k = new Konto();
+        //setter person id
+        String personId = request.getParameter("personId");
+        if (personId == null || personId.isEmpty()) {
+            response.sendError(400, "Mangler personId");
+            return null;
+        } else {
+            k.setPersonid(Integer.valueOf(personId));
+        }
+        //setter bank id
+        String bankId = request.getParameter("bankId");
+        if (bankId == null || bankId.isEmpty()) {
+            response.sendError(400, "Mangler bank id");
+            return null;
+        } else {
+            k.setBankid(bankId);
+        }
+        //setter kontotype
+        String kontotype = request.getParameter("kontotype");
+        if (kontotype == null || kontotype.isEmpty()) {
+            response.sendError(400, "Mangler kontotype");
+            return null;
+        } else {
+            k.setKontotype(kontotype);
+        }
+        //setter kontonummer
+        String kontonummer = request.getParameter("kontonummer");
+        if (kontonummer == null || kontonummer.isEmpty()) {
+            response.sendError(400, "Mangler kontonummer");
+            return null;
+        } else {
+            k.setKontonr(kontonummer);
+        }
+        //setter endringsdato
+        k.setSisteEndringsTidspunkt(new Date());
+        //setter oppstartssaldo
+        String saldo = request.getParameter("saldo");
+        if (saldo == null || saldo.isEmpty()) {
+            k.setSaldo(0.0);
+        } else {
+            k.setSaldo(Double.valueOf(saldo));
+        }
+        try {
+            kontoIface.create(k);
+            return gson.toJson("konto created successfully");
+        }
+        catch (Exception e) {
+            return e.getCause().getMessage();
+        }
+
     }
 }

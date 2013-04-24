@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "KontoTransaksjon.findByInitsiator", query = "SELECT k FROM KontoTransaksjon k WHERE k.initsiator = :initsiator"),
     @NamedQuery(name = "KontoTransaksjon.findByBelop", query = "SELECT k FROM KontoTransaksjon k WHERE k.belop = :belop")})
 public class KontoTransaksjon implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -197,5 +198,4 @@ public class KontoTransaksjon implements Serializable {
     public String toString() {
         return "no.hin.stg.intapp.oblig4web.entities.KontoTransaksjon[ id=" + id + " ]";
     }
-    
 }

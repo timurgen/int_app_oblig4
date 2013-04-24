@@ -28,5 +28,4 @@ public interface PersonKontoMapFacadeLocal {
     List<PersonKontoMap> findRange(int[] range);
 
     int count();
-    
 }

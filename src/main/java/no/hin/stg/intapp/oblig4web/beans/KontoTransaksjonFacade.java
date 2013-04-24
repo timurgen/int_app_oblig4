@@ -19,6 +19,7 @@ import no.hin.stg.intapp.oblig4web.entities.KontoTransaksjon;
 @Stateless
 @Singleton
 public class KontoTransaksjonFacade extends AbstractFacade<KontoTransaksjon> implements KontoTransaksjonFacadeLocal {
+
     @PersistenceContext(unitName = "no.hin.stg.intapp_oblig4web_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -38,5 +39,4 @@ public class KontoTransaksjonFacade extends AbstractFacade<KontoTransaksjon> imp
         trByAccNmbr.setParameter("fraKonto", accNmbr);
         return trByAccNmbr.getResultList();
     }
-    
 }
