@@ -1,0 +1,30 @@
+<%-- 
+    :widget ta ut penger fra konto
+
+--%>
+<%@ page pageEncoding="UTF-8" %>
+<script>
+    $(function() {
+        $("#idTaUtPengerWindow").dialog({
+            autoOpen: false,
+            height: 225,
+            width: 350,
+            modal: true,
+            buttons: {
+                "Utføre operasjon": function() {
+                    var belop = $("#idBelopTaUt").val();
+                    alert(belop);
+                },
+                "Cansel": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+</script>
+<div id="idTaUtPengerWindow" title="Ta ut penger">
+    <div class="container span2" id="idMessageBoxTaUtForm"></div>
+    <br />
+    <label for="idBelopTaUt">Beløp:</label>
+    <input type="text" placeholder="beløp" id="idBelopTaUt" name="belop" />
+</div>

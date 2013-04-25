@@ -3,13 +3,26 @@
 <script>
     //modal window with account history
     $(function() {
-
+        $("#idModalWindowClientHistory").dialog({
+            autoOpen: false,
+            height: 480,
+            width: 640,
+            modal: true,
+            buttons: {
+                "Close": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+    $(document).ready(function() {
+        $("#idModalWindowClientHistory").dialog("open");
     });
 
 </script>
 
-<div id="idModalWindowClientHistory">
-    <table>
+<div id="idModalWindowClientHistory" title="Client details">
+    <table class="table table-striped table-bordered">
         <thead>
         <th>Bank id</th>
         <th>Kontotype</th>

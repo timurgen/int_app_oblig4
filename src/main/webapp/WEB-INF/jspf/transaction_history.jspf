@@ -35,26 +35,7 @@
         });
     });
 
-    /**
-     * <p>Pengeoverføring
-     * @returns {undefined}     
-     * */
-    $(function() {
-        $("#idOverforePengerWindow").dialog({
-            autoOpen: false,
-            height: 300,
-            width: 300,
-            modal: true,
-            buttons: {
-                "Overføre": function() {
 
-                },
-                "Cansel": function() {
-                    $(this).dialog("close");
-                }
-            }
-        });
-    });
 
     /**
      * <p>filler opp abell med transaksjonshistorie til gitt konto
@@ -109,7 +90,7 @@
     }
 
     function taUtPenger() {
-
+        $("#idTaUtPengerWindow").dialog("open");
     }
 
     function setteInnPenger() {
@@ -119,7 +100,6 @@
 
 <div id="idTrHistDialog" title="Transaksjonshistorie">
     <div class="container span6">
-
         <table class="table table-striped table-bordered" id="idTrHistTable">
             <thead>
             <th>ID</th>
@@ -142,36 +122,11 @@
     </div>
 </div>
 
-<div id="idOverforePengerWindow" title="Overføre penger">
-    <div class="container span2" id="idMessage"></div>
-    <br/>
-    <label for="idBelopOverfore">Beløp:</label>
-    <input type="text" placeholder="beløp" id="idBelopOverfore" name="belop" />
-    <label for="idBelop">Til konto:</label>
-    <input type="text" placeholder="til konto" id="idTilKonto" name="konto" />
-    <div class="container span2" id="idSaldo"></div>
-</div>
+<%-- widget "overføre penger fra konto til konto"--%>
+<%@include file="transactions/transaction_overfore.jspf" %>
 
-<script>
-    $(function() {
-        $("#idSetteInnPengerWindow").dialog({
-            autoOpen: false,
-            height: 150,
-            width: 300,
-            modal: true,
-            buttons: {
-                "Sette inn": function() {
-                    var belop = $("#idBelopSetteInn").val();
-                    alert(belop);
-                },
-                "Cansel": function() {
-                    $(this).dialog("close");
-                }
-            }
-        });
-    });
-</script>
-<div id="idSetteInnPengerWindow" title="Sette inn penger">
-    <label for="idBelopSetteInn">Beløp:</label>
-    <input type="text" placeholder="beløp" id="idBelopSetteInn" name="belop" />
-</div>
+<%-- widget "sette inn penger på konto"  --%>
+<%@include file="transactions/transaction_sette_inn.jspf" %>
+
+<%-- widget "Ta ut penger fra konto" --%>
+<%@include file="transactions/transaction_ta_ut.jspf" %>

@@ -1,0 +1,30 @@
+<%-- 
+    "Sette inn penger" widget
+inneholder modal vindu og tilhørende js
+--%>
+<%@ page pageEncoding="UTF-8" %>
+<script>
+    $(function() {
+        $("#idSetteInnPengerWindow").dialog({
+            autoOpen: false,
+            height: 225,
+            width: 350,
+            modal: true,
+            buttons: {
+                "Sette inn": function() {
+                    var belop = $("#idBelopSetteInn").val();
+                    alert(belop);
+                },
+                "Cansel": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+</script>
+<div id="idSetteInnPengerWindow" title="Sette inn penger">
+    <div class="container span2" id="idMessageBoxSetteInnForm"></div>
+    <br />
+    <label for="idBelopSetteInn">Beløp:</label>
+    <input type="text" placeholder="beløp" id="idBelopSetteInn" name="belop" />
+</div>

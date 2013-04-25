@@ -1,0 +1,34 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<script>
+
+    /**
+     * <p>Pengeoverføring
+     * @returns {undefined}     
+     * */
+    $(function() {
+        $("#idOverforePengerWindow").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 300,
+            modal: true,
+            buttons: {
+                "Overføre": function() {
+
+                },
+                "Cansel": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+</script>
+<div id="idOverforePengerWindow" title="Overføre penger">
+    <div class="container span2" id="idMessageBoxTrHistory"></div>
+    <br/>
+    <label for="idBelopOverfore">Beløp:</label>
+    <input type="text" placeholder="beløp" id="idBelopOverfore" name="belop" />
+    <label for="idBelop">Til konto:</label>
+    <input type="text" placeholder="til konto" id="idTilKonto" name="konto" />
+    <div class="container span2" id="idSaldo"></div>
+</div>
