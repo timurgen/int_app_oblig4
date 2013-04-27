@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>HIN bank</title>
         <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <%@include file="WEB-INF/jspf/headerloginform.jspf" %>
     </head>
     <body>
