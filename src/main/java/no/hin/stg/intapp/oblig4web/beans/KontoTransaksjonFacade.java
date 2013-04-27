@@ -4,6 +4,7 @@
  */
 package no.hin.stg.intapp.oblig4web.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Singleton;
 import javax.ejb.Stateless;
@@ -49,6 +50,12 @@ public class KontoTransaksjonFacade extends AbstractFacade<KontoTransaksjon> imp
     public List<KontoTransaksjon> findByAccNmbr(int accNmbr) {
         Query trByAccNmbr = getEntityManager().createNamedQuery("KontoTransaksjon.findByFraKonto");
         trByAccNmbr.setParameter("fraKonto", accNmbr);
-        return trByAccNmbr.getResultList();
+        List<KontoTransaksjon> fraTr = trByAccNmbr.getResultList();
+        trByAccNmbr = getEntityManager().createNamedQuery("KontoTransaksjon.findByTilKonto");
+        trByAccNmbr.setParameter("tilKonto", accNmbr);
+        List<KontoTransaksjon> tilTr = trByAccNmbr.getResultList();
+        List<KontoTransaksjon> result = new ArrayList<>(fraTr);
+        result.addAll(tilTr);
+        return result;
     }
 }

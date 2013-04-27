@@ -11,6 +11,9 @@
             buttons: {
                 "Close": function() {
                     $(this).dialog("close");
+                },
+                "Opprett konto": function() {
+                    alert("TODO funkjon 'opprett konto'");
                 }
             }
         });

@@ -13,7 +13,20 @@ inneholder modal vindu og tilhørende js
             buttons: {
                 "Sette inn": function() {
                     var belop = $("#idBelopSetteInn").val();
-                    alert(belop);
+                    $.ajax({
+                        type: "GET",
+                        url: "Account",
+                        dataType: "json",
+                        async: false,
+                        data: "action=sette-inn&konto=" + window.currentConto + "&belop=" + belop,
+                        success: function(msg) {
+                            $("#idMessageBoxSetteInnForm").html('<span class="label label-success">' + msg + '</span>');
+                        },
+                        error: function(xhr, status, error) {
+                            $("#idMessageBoxSetteInnForm").html('<span class="label label-important">' + error + '</span>');
+                        }
+                    });
+                    
                 },
                 "Cansel": function() {
                     $(this).dialog("close");
@@ -24,7 +37,9 @@ inneholder modal vindu og tilhørende js
 </script>
 <div id="idSetteInnPengerWindow" title="Sette inn penger">
     <div class="container span2" id="idMessageBoxSetteInnForm"></div>
-    <br />
-    <label for="idBelopSetteInn">Beløp:</label>
-    <input type="text" placeholder="beløp" id="idBelopSetteInn" name="belop" />
+    <div class="container span2">
+        <label for="idBelopSetteInn">Beløp:</label>
+        <input type="text" placeholder="beløp" id="idBelopSetteInn" name="belop" /> 
+    </div>
+
 </div>

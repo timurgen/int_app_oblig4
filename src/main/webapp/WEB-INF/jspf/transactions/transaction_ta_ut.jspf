@@ -13,7 +13,19 @@
             buttons: {
                 "Utføre operasjon": function() {
                     var belop = $("#idBelopTaUt").val();
-                    alert(belop);
+                    $.ajax({
+                        type: "GET",
+                        url: "Account",
+                        dataType: "json",
+                        async: false,
+                        data: "action=ta-ut&konto=" + window.currentConto + "&belop=" + belop,
+                        success: function(msg) {
+                            $("#idMessageBoxTaUtForm").html('<span class="label label-success">' + msg + '</span>');
+                        },
+                        error: function(xhr, status, error) {
+                            $("#idMessageBoxTaUtForm").html('<span class="label label-important">' + error + '</span>');
+                        }
+                    });
                 },
                 "Cansel": function() {
                     $(this).dialog("close");
@@ -25,6 +37,9 @@
 <div id="idTaUtPengerWindow" title="Ta ut penger">
     <div class="container span2" id="idMessageBoxTaUtForm"></div>
     <br />
-    <label for="idBelopTaUt">Beløp:</label>
-    <input type="text" placeholder="beløp" id="idBelopTaUt" name="belop" />
+    <div class="container span2">
+        <label for="idBelopTaUt">Beløp:</label>
+        <input type="text" placeholder="beløp" id="idBelopTaUt" name="belop" />
+    </div>
+
 </div>

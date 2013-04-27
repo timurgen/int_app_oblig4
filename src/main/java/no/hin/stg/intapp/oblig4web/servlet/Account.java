@@ -7,15 +7,17 @@ package no.hin.stg.intapp.oblig4web.servlet;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import no.hin.stg.intapp.oblig4web.beans.KontoFacadeLocal;
+import no.hin.stg.intapp.oblig4web.beans.KontoTransaksjonFacadeLocal;
 import no.hin.stg.intapp.oblig4web.entities.Konto;
+import no.hin.stg.intapp.oblig4web.entities.KontoTransaksjon;
 
 /**
  *
@@ -29,8 +31,12 @@ public class Account extends HttpServlet {
     private static final String GET_BY_ID = "get-by-id";
     private static final String CREATE = "create";
     private static final String GET_SALDO = "get-saldo";
+    private static final String SETTE_INN = "sette-inn";
+    private static final String TA_UT = "ta-ut";
     @EJB
     private KontoFacadeLocal kontoIface;
+    @EJB
+    KontoTransaksjonFacadeLocal transactionIface;
     /**
      * POJO to JSON converter
      */
@@ -73,9 +79,15 @@ public class Account extends HttpServlet {
                 //TODO implemnent returnere konto med gitt id funksjon
                 break;
             case GET_SALDO:
-                //TODO
-                output = getSaldo(request, response);
-            default:
+                output = getSaldo(request, response); //returnerer saldo til en gitt konto
+                break;
+            case SETTE_INN://setter penger inn på konto
+                output = gson.toJson(settePengerInn(request, response));
+                break;
+            case TA_UT:
+                output = gson.toJson(taUtPenger(request, response));
+                break;
+            default://must not be reached
                 throw new AssertionError();
         }
         try {
@@ -188,9 +200,111 @@ public class Account extends HttpServlet {
         }
 
     }
-    
-    
+
+    /**
+     * <p> Obtains saldo for given account
+     *
+     * @param request
+     * @param response
+     * @return
+     */
     private String getSaldo(HttpServletRequest request, HttpServletResponse response) {
+        //TODO
         return null;
+    }
+
+    /**
+     * <p> setter inn penger på konto
+     *
+     * @param request
+     * @param response
+     * @return string representation of operation result
+     * @throws IOException
+     */
+    private String settePengerInn(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String _belop = request.getParameter("belop");
+        String _konto = request.getParameter("konto");
+        if (_belop == null || _belop.isEmpty()) {
+            response.sendError(400, "bad value");
+            return null;
+        }
+        if (_konto == null || _konto.isEmpty()) {
+            response.sendError(400, "bad konto");
+            return null;
+        }
+        double belop = Double.valueOf(_belop);
+        if (belop <= 0.0) {
+            response.sendError(400, "negative/zero value");
+            return null;
+        }
+        synchronized (this) {
+            Konto k = this.kontoIface.findByKontoNmr(_konto);
+            if (k != null) {
+                k.setSaldo(k.getSaldo() + belop);
+                k.setSisteEndringsTidspunkt(new Date());
+                this.kontoIface.edit(k);
+                KontoTransaksjon kt = new KontoTransaksjon();
+                kt.setBelop(belop);
+                kt.setFraKonto(-1);
+                kt.setInitsiator(1);
+                kt.setRegistreringsTidspunkt(new Date());
+                kt.setTilKonto(Integer.valueOf(_konto));
+                kt.setTransType(1);
+                kt.setTransaksjonsTid(new Date());
+                kt.setTranskasjonsbeskrivelse("penger satt på bankkontor");
+                this.transactionIface.create(kt);
+                return "operation successed";
+            }
+        }
+        return "opps, feil...";
+    } //end of settePengerInn
+
+    /**
+     *  <p> Trekker pnger fra bank konto
+     * @param request
+     * @param response
+     * @return string representation of operation result
+     * @throws IOException 
+     */
+    private String taUtPenger(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String _belop = request.getParameter("belop");
+        String _konto = request.getParameter("konto");
+        if (_belop == null || _belop.isEmpty()) {
+            response.sendError(400, "bad value");
+            return null;
+        }
+        if (_konto == null || _konto.isEmpty()) {
+            response.sendError(400, "bad konto");
+            return null;
+        }
+        double belop = Double.valueOf(_belop);
+        if (belop <= 0.0) {
+            response.sendError(400, "negative/zero value");
+            return null;
+        }
+        synchronized (this) {
+            Konto k = this.kontoIface.findByKontoNmr(_konto);
+            if (k != null) {
+                if ((k.getSaldo() - belop) < 0) {
+                    response.sendError(400, "ikke nok penger på konto");
+                    return null;
+                }
+                k.setSaldo(k.getSaldo() - belop);
+                k.setSisteEndringsTidspunkt(new Date());
+                this.kontoIface.edit(k);
+                KontoTransaksjon kt = new KontoTransaksjon();
+                kt.setBelop(belop);
+                kt.setFraKonto(Integer.valueOf(_konto));
+                kt.setInitsiator(1);
+                kt.setRegistreringsTidspunkt(new Date());
+                kt.setTilKonto(-1);
+                kt.setTransType(1);
+                kt.setTransaksjonsTid(new Date());
+                kt.setTranskasjonsbeskrivelse("penger tatt ut på bankkontor");
+                this.transactionIface.create(kt);
+                return "operation successed";
+            }
+        }
+        return "opps, feil...";
     }
 }

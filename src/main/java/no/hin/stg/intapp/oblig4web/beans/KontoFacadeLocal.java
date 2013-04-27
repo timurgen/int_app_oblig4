@@ -58,4 +58,6 @@ public interface KontoFacadeLocal {
      * @return
      */
     int count();
+    
+    Konto findByKontoNmr(String kontoNr);
 }

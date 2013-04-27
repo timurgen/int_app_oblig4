@@ -8,6 +8,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import no.hin.stg.intapp.oblig4web.entities.Konto;
 
 /**
@@ -35,5 +36,12 @@ public class KontoFacade extends AbstractFacade<Konto> implements KontoFacadeLoc
      */
     public KontoFacade() {
         super(Konto.class);
+    }
+
+    @Override
+    public Konto findByKontoNmr(String kontoNr) {
+        Query ktByAccNmbr = getEntityManager().createNamedQuery("Konto.findByKontonr");
+        ktByAccNmbr.setParameter("kontonr",kontoNr);
+        return (Konto) ktByAccNmbr.getSingleResult();
     }
 }

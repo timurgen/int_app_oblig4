@@ -7,7 +7,12 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script>
-
+    /**
+     * <p> holder rede på hvilken konto som bruke ved operasjoner
+     * @type type
+     */
+    var currentConto;
+    var currentSaldo;
     /**
      * <p>Transaksjonshisorie
      * @returns {undefined}
@@ -43,7 +48,8 @@
      * @returns {undefined} 
      * */
     function fillTransactionHistory(accId, saldo) {
-
+        currentConto = accId;
+        currentSaldo = saldo;
         $("#idTrHistTable tbody").empty(); //fjerner eventuelt gammelt innhold
         $("#idMessage").empty();
         //sender json for å få transaksjoner
