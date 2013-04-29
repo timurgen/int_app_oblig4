@@ -14,7 +14,27 @@
             modal: true,
             buttons: {
                 "Overføre": function() {
-
+                    var belop = $("#idBelopOverfore").val();
+                    var tilKonto = $("#idTilKonto").val();
+                    var postData = {
+                        belop: belop,
+                        fraKonto: window.currentConto,
+                        tilKonto: tilKonto,
+                        action: "overfore"
+                    };
+                    $.ajax({
+                        type: "GET",
+                        url: "Account",
+                        dataType: "json",
+                        async: false,
+                        data: postData,
+                        success: function(msg) {
+                            $("#idMessageBoxTrOverfore").html('<span class="label label-success">' + msg + '</span>');
+                        },
+                        error: function(xhr, status, error) {
+                            $("#idMessageBoxTrOverfore").html('<span class="label label-important">' + error + '</span>');
+                        }
+                    });
                 },
                 "Cansel": function() {
                     $(this).dialog("close");
@@ -24,11 +44,13 @@
     });
 </script>
 <div id="idOverforePengerWindow" title="Overføre penger">
-    <div class="container span2" id="idMessageBoxTrHistory"></div>
+    <div class="container span2" id="idMessageBoxTrOverfore"></div>
     <br/>
-    <label for="idBelopOverfore">Beløp:</label>
-    <input type="text" placeholder="beløp" id="idBelopOverfore" name="belop" />
-    <label for="idBelop">Til konto:</label>
-    <input type="text" placeholder="til konto" id="idTilKonto" name="konto" />
+    <div class="container span2">
+        <label for="idBelopOverfore">Beløp:</label>
+        <input type="text" placeholder="beløp" id="idBelopOverfore" name="belop" />
+        <label for="idBelop">Til konto:</label>
+        <input type="text" placeholder="til konto" id="idTilKonto" name="konto" />
+    </div>
     <div class="container span2" id="idSaldo"></div>
 </div>

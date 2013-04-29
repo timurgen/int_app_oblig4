@@ -19,8 +19,13 @@
         });
     });
     $(document).ready(function() {
+        loadKontoerTilKlient(window.currentClientId);
         $("#idModalWindowClientHistory").dialog("open");
     });
+
+    function loadKontoerTilKlient(currentClientId) {
+        //TODO
+    }
 
 </script>
 

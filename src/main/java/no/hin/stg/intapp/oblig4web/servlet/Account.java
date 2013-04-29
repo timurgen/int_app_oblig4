@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +32,7 @@ public class Account extends HttpServlet {
     private static final String GET_SALDO = "get-saldo";
     private static final String SETTE_INN = "sette-inn";
     private static final String TA_UT = "ta-ut";
+    private static final String OVERFORE = "overfore";
     @EJB
     private KontoFacadeLocal kontoIface;
     @EJB
@@ -86,6 +86,9 @@ public class Account extends HttpServlet {
                 break;
             case TA_UT:
                 output = gson.toJson(taUtPenger(request, response));
+                break;
+            case OVERFORE:
+                output = gson.toJson(overforePenger(request, response));
                 break;
             default://must not be reached
                 throw new AssertionError();
@@ -207,6 +210,7 @@ public class Account extends HttpServlet {
      * @param request
      * @param response
      * @return
+     * @deprecated 
      */
     private String getSaldo(HttpServletRequest request, HttpServletResponse response) {
         //TODO
@@ -253,7 +257,7 @@ public class Account extends HttpServlet {
                 kt.setTransaksjonsTid(new Date());
                 kt.setTranskasjonsbeskrivelse("penger satt på bankkontor");
                 this.transactionIface.create(kt);
-                return "operation successed";
+                return "operation successed"; 
             }
         }
         return "opps, feil...";
@@ -306,5 +310,19 @@ public class Account extends HttpServlet {
             }
         }
         return "opps, feil...";
+    }
+
+    /**
+     * <p> overfører penger fra n konto til en annen konto
+     * @param request
+     * @param response
+     * @return operation result
+     */
+    private String overforePenger(HttpServletRequest request, HttpServletResponse response) {
+        String belop = request.getParameter("belop");
+        String fraKonto = request.getParameter("fraKonto");
+        String tilKonto  = request.getParameter("tilKonto");
+        return null;
+        
     }
 }

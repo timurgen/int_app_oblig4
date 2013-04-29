@@ -22,8 +22,11 @@
         <%@include file="WEB-INF/jspf/clientlist.jspf" %>
         <% }
             if (request.getParameter("client") != null) {
+                out.println("<script> var currentClientId=" +
+                        request.getParameter("client")+
+                        "</script>");
         %>
-        <%@include file="WEB-INF/jspf/client_details.jspf" %>
+        <%@include file="WEB-INF/jspf/clients/konto_details.jspf" %>
         <% }%>
     </body>
 </html>
